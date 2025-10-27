@@ -14,15 +14,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class ProductController {
 
-    private final ProductService productService;
+    ProductService productService;
 
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
-
     @GetMapping
     public ResponseEntity<Page<ProductResponseDto>> getAllProducts(
             @RequestParam(defaultValue = "0") int page,

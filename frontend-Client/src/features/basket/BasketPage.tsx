@@ -37,7 +37,7 @@ export default function BasketPage() {
         BasketActions.incrementItemQuantity(productId, quantity, dispatch);
     };
 
-    if(!basket || basket.items.length ===0 ) return <Typography variant="h3">Your basket is empty. Please add few items!!!</Typography>
+    if(!basket || basket.items.length === 0) return <Typography variant="h3">Your basket is empty. Please add few items!!!</Typography>
 
     return (
         <>

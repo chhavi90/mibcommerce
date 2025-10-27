@@ -1,3 +1,5 @@
+package com.mibcommerce.controller;
+
 import com.mibcommerce.dto.BasketResponseDto;
 import com.mibcommerce.service.BasketService;
 import org.springframework.http.HttpStatus;
@@ -8,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/basket")
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class BasketController {
 
     private final BasketService basketService;

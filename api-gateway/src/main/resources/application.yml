@@ -1,3 +1,71 @@
+#server:
+#  port: 8054
+#
+#spring:
+#  application:
+#    name: api-gateway
+#  cloud:
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+#          lower-case-service-id: true
+#      routes:
+#        - id: product-service
+#          uri: lb://product-service
+#          predicates:
+#            - Path=/api/products/**
+#          filters:
+#            - RewritePath=/api/(?<segment>.*), /$\{segment}
+#
+#        - id: basket-service
+#          uri: lb://basket-service
+#          predicates:
+#            - Path=/api/basket/**
+#          filters:
+#            - RewritePath=/api/(?<segment>.*), /$\{segment}
+#
+#        - id: order-service
+#          uri: lb://order-service
+#          predicates:
+#            - Path=/api/orders/**
+#          filters:
+#            - RewritePath=/api/(?<segment>.*), /$\{segment}
+#            - AuthenticationFilter
+#
+#        - id: auth-service
+#          uri: lb://auth-service
+#          predicates:
+#            - Path=/api/auth/**
+#          filters:
+#            - RewritePath=/api/(?<segment>.*), /$\{segment}
+#
+#      globalcors:
+#        add-to-simple-url-handler-mapping: true
+#        cors-configurations:
+#          '[/**]':
+#            allowedOrigins:
+#              - "http://localhost:3000"
+#            allowedMethods:
+#              - GET
+#              - POST
+#              - PUT
+#              - DELETE
+#              - OPTIONS
+#            allowedHeaders: "*"
+#            allowCredentials: true
+#            maxAge: 3600
+#
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#    fetch-registry: true
+
+
+
+
 server:
   port: 8054
 
@@ -10,40 +78,43 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+
       routes:
         - id: product-service
           uri: lb://product-service
           predicates:
             - Path=/api/products/**
           filters:
-            - RewritePath=/api/(?<segment>.*), /$\{segment}
+            - RewritePath=/api/(?<segment>.*), /${segment}
 
         - id: basket-service
           uri: lb://basket-service
           predicates:
             - Path=/api/basket/**
           filters:
-            - RewritePath=/api/(?<segment>.*), /$\{segment}
+            - RewritePath=/api/(?<segment>.*), /${segment}
 
         - id: order-service
           uri: lb://order-service
           predicates:
             - Path=/api/orders/**
           filters:
-            - RewritePath=/api/(?<segment>.*), /$\{segment}
+            - RewritePath=/api/(?<segment>.*), /${segment}
             - AuthenticationFilter
 
         - id: auth-service
-          uri: lb://auth-sevice
+          uri: lb://auth-service
           predicates:
             - Path=/api/auth/**
           filters:
-            - RewritePath=/api/(?<segment>.*), /$\{segment}
+            - RewritePath=/api/(?<segment>.*), /${segment}
 
       globalcors:
+        add-to-simple-url-handler-mapping: true
         cors-configurations:
           '[/**]':
-            allowedOrigins: "*"
+            allowedOrigins:
+              - "http://localhost:3000"
             allowedMethods:
               - GET
               - POST
@@ -51,6 +122,8 @@ spring:
               - DELETE
               - OPTIONS
             allowedHeaders: "*"
+            allowCredentials: true
+            maxAge: 3600
 
 eureka:
   client:

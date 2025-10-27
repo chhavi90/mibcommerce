@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-public abstract class BasketServiceImpl implements BasketService {
+public class BasketServiceImpl implements BasketService {
 
     private final BasketRepository basketRepository;
 
